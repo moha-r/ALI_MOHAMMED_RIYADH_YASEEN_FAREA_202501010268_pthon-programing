@@ -67,11 +67,10 @@ The output is a single Boolean decision:
 
 ## 2. Design the Algorithm
 ![alt text](image.png)
-
 ### 2.1. Create the diagram using draw.io / canva / etc.
 
 ```mermaid
-flowchart TD◊
+flowchart TD
     Start([Start]) --> Input[/Input: Age, Accompanied, Ticket/]
     Input --> Dec1{Has Ticket == True?}
     Dec1 -- No --> Denied([Admission Denied])
