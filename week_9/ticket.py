@@ -14,7 +14,7 @@ def create_ticket():
         "issue": issue,
         "location": location,
         "priority": priority,
-        "technician": "",
+        "technician": "John Doe",
         "status": "Open"
     }
 
