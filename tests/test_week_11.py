@@ -110,5 +110,28 @@ class StudentTests(unittest.TestCase):
         )
 
 
+class MainTests(unittest.TestCase):
+    def test_connects_input_access_and_display_modules(self):
+        import sys
+        from unittest.mock import patch
+
+        sys.path.insert(0, str(WEEK_11))
+        try:
+            main = load_week_11_module(self, "main")
+        finally:
+            sys.path.pop(0)
+
+        with patch.object(
+            main,
+            "get_student",
+            return_value=("izzad", "202505", "Y", "Y", "Y"),
+        ), patch.object(main, "print_result") as mocked_print:
+            main.main()
+
+        mocked_print.assert_called_once_with(
+            "izzad", "202505", "Access Granted", "Welcome to the lab."
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
