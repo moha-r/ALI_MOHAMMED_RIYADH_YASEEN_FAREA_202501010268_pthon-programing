@@ -60,5 +60,30 @@ class AccessTests(unittest.TestCase):
         )
 
 
+class DisplayTests(unittest.TestCase):
+    def test_prints_access_result_in_tutorial_layout(self):
+        import contextlib
+        import io
+
+        display = load_week_11_module(self, "display")
+        output = io.StringIO()
+
+        with contextlib.redirect_stdout(output):
+            display.print_result(
+                "izzad", "202505", "Access Granted", "Welcome to the lab."
+            )
+
+        self.assertEqual(
+            output.getvalue(),
+            "\n========== ACCESS RESULT ==========\n"
+            "Student Name : izzad\n"
+            "Student ID   : 202505\n"
+            "-----------------------------------\n"
+            "Status : Access Granted\n"
+            "Reason : Welcome to the lab.\n"
+            "===================================\n",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
