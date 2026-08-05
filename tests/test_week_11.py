@@ -85,5 +85,30 @@ class DisplayTests(unittest.TestCase):
         )
 
 
+class StudentTests(unittest.TestCase):
+    def test_collects_the_five_tutorial_values(self):
+        from unittest.mock import patch
+
+        student = load_week_11_module(self, "student")
+
+        with patch(
+            "builtins.input",
+            side_effect=["izzad", "202505", "Y", "Y", "Y"],
+        ) as mocked_input:
+            result = student.get_student()
+
+        self.assertEqual(result, ("izzad", "202505", "Y", "Y", "Y"))
+        self.assertEqual(
+            [call.args[0] for call in mocked_input.call_args_list],
+            [
+                "Student Name : ",
+                "Student ID : ",
+                "Registered for today's lab? (Y/N): ",
+                "Is the lab open? (Y/N): ",
+                "Computer available? (Y/N): ",
+            ],
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
